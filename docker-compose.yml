@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  sso:
+    image: quay.io/keycloak/keycloak:20.0.0
+    container_name: keycloak
+    environment:
+        - KEYCLOAK_ADMIN=admin
+        - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - 127.0.0.1:8080:8080
+    restart: always
+    command: start-dev  --hostname localhost
+    hostname: keycloak
+
+  rp:
+    image: relyingparty
+    container_name: rp
+    build: .
+    ports:
+      - 127.0.0.1:8000:8000
+    restart: always
+    hostname: relyingparty
