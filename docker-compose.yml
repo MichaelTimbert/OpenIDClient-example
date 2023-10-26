@@ -10,14 +10,13 @@ services:
     ports:
       - 127.0.0.1:8080:8080
     restart: always
-    command: start-dev  --hostname localhost
+    command: start-dev
     hostname: keycloak
 
   rp:
     image: relyingparty
     container_name: rp
     build: .
-    ports:
-      - 127.0.0.1:8000:8000
     restart: always
+    network_mode: "host"          
     hostname: relyingparty
